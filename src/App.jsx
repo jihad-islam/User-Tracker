@@ -1,9 +1,11 @@
-import React from 'react'
-
+import React from "react";
+import UserTracker from "./components/UserTracker";
 function App() {
   return (
-    <div>App</div>
-  )
+    <div>
+      <UserTracker />
+    </div>
+  );
 }
 
-export default App
+export default App;
