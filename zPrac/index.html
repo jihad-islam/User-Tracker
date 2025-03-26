@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Tracker</title>
+  </head>
+  <body>
+    <h1>User Tracker</h1>
+
+    <!-- Count Box -->
+    <p>Total Users: <span id="userCount">0</span></p>
+
+    <!-- User List -->
+    <div id="userList"></div>
+
+    <!-- Add User Button -->
+    <button id="addUserButton">Add Random User</button>
+
+    <script>
+      // Initial array of users
+      let users = [
+        { name: "John", age: 30, occupation: "Engineer" },
+        { name: "Jane", age: 25, occupation: "Doctor" },
+        { name: "Michael", age: 35, occupation: "Teacher" },
+      ];
+
+      // Display the user list
+      function displayUsers() {
+        const userList = document.getElementById("userList");
+        userList.innerHTML = ""; // Clear the existing list
+
+        // Loop through the users array and create an element for each user
+        users.forEach((user) => {
+          const newElement = document.createElement("div");
+          newElement.textContent = `${user.name}, Age: ${user.age}, Occupation: ${user.occupation}`;
+          userList.appendChild(newElement);
+        });
+
+        // Update the count of users
+        document.getElementById("userCount").textContent = users.length;
+      }
+
+      // Function to generate a random user
+      function generateRandomUser() {
+        const names = ["John", "Jane", "Michael", "Sarah", "David"];
+        const occupations = [
+          "Engineer",
+          "Doctor",
+          "Teacher",
+          "Artist",
+          "Scientist",
+        ];
+
+        const name = names[Math.floor(Math.random() * names.length)];
+        const age = Math.floor(Math.random() * (60 - 18 + 1)) + 18;
+        const occupation =
+          occupations[Math.floor(Math.random() * occupations.length)];
+
+        return { name, age, occupation };
+      }
+
+      // Add a random user on button click
+      document.getElementById("addUserButton").addEventListener("click", () => {
+        const newUser = generateRandomUser();
+        users.push(newUser); // Add the new user to the users array
+        displayUsers(); // Re-render the user list with the new user
+      });
+
+      // Initial call to display the users
+      displayUsers();
+    </script>
+  </body>
+</html>
